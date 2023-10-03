@@ -128,6 +128,11 @@
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14082.490584679968!2d103.05138239480804!3d3.9372765729031385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31c8c341543fc543%3A0x146176f03f3f5b22!2sCampstay%20Sungai%20Lembing!5e0!3m2!1sen!2smy!4v1694283873545!5m2!1sen!2smy" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                         <div class="form-container">
+                            <div id="messageAlert" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
+                                <strong id="text"></strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            <!-- <div id="messageAlert" class="alert alert-success" role="alert" ></div> -->
                             <div class="circle-container" style="margin-top: 2em;">
                                 <!-- <div class="circle">
                                     <div class="dot"></div>
@@ -141,31 +146,31 @@
                                     <div class="col-md-6">
                                         <div class="py-2">
                                             <label for="name" class="contact-label fonts-title-5f">Name</label>
-                                            <input type="text" class="form-control input-contact fonts-p" id="name" placeholder="Full Name">
+                                            <input type="text" class="form-control input-contact fonts-p" id="name" placeholder="Full Name" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="py-2">
                                             <label for="subject" class="contact-label fonts-title-5f">Subject</label>
-                                            <input type="text" class="form-control input-contact fonts-p" id="subject" placeholder="Subject">
+                                            <input type="text" class="form-control input-contact fonts-p" id="subject" placeholder="Subject" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="py-2">
                                             <label for="email" class="contact-label fonts-title-5f">Email</label>
-                                            <input type="email" class="form-control input-contact fonts-p" id="email" placeholder="Your Email">
+                                            <input type="email" class="form-control input-contact fonts-p" id="email" placeholder="Your Email" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="py-2">
                                             <label for="phone" class="contact-label fonts-title-5f">Telephone</label>
-                                            <input type="text" class="form-control input-contact fonts-p" id="phone" placeholder="Your Phone">
+                                            <input type="text" class="form-control input-contact fonts-p" id="phone" placeholder="Your Phone" required>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="py-2">
                                             <label for="message" class="contact-label fonts-title-5f">Message</label>
-                                            <textarea class="form-control input-contact fonts-p" placeholder="Leave a message here" id="message" style="height: 150px"></textarea>
+                                            <textarea class="form-control input-contact fonts-p" placeholder="Leave a message here" id="message" style="height: 150px" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-12 py-3">
@@ -192,6 +197,42 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script>
+
+        document.querySelector('.contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = {
+                name: document.getElementById('name').value,
+                subject: document.getElementById('subject').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                message: document.getElementById('message').value
+            };
+
+            fetch('./insert.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === "Data inserted successfully") {
+                    document.getElementById('messageAlert').style.display = 'block';
+                    document.getElementById('text').innerText = "Successfully !!!";
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+    </script>
 </body>
 
 </html>

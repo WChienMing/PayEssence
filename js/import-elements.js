@@ -15,8 +15,26 @@ document.addEventListener("DOMContentLoaded", function() {
           link.classList.add('active');
         }
       });
-    });
 
+      const navLinks_dropdown = document.querySelectorAll('.dropdown-item');
+        const currentPage_dropdown = window.location.pathname.split('/').pop();
+
+        let isDropdownItemActive = false;
+        navLinks_dropdown.forEach(function(link) {
+            const linkPage = link.getAttribute('href');
+            if (currentPage_dropdown === linkPage) {
+                link.classList.add('active');
+                isDropdownItemActive = true;
+            }
+        });
+
+        if (isDropdownItemActive) {
+            const mainLink = document.querySelector('.nav-link.dropdown-toggle');
+            mainLink.classList.add('active');
+        }
+
+    });
+    
   fetch("footer.html")
     .then(response => response.text())
     .then(data => footerContainer.innerHTML = data);
