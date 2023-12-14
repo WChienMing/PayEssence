@@ -1128,6 +1128,9 @@
     width: 280px; 
     height: 350px; 
     overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
 }
 
 @media (min-width: 992px) {
@@ -1211,8 +1214,3 @@
 }
 
 
-.accordion-body{
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-}
