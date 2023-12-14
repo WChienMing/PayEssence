@@ -936,6 +936,7 @@
     width: 100%;
     text-align: center;
     margin-bottom: 25px;
+    cursor: pointer;
 }
 
 
@@ -1115,6 +1116,20 @@
     margin-left: 0;
 }
 
+.payment-logo{
+    max-width: 100%;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.accordion-body{
+    background: #fff; 
+    border-radius: 16px; 
+    width: 280px; 
+    height: 350px; 
+    overflow: auto;
+}
+
 @media (min-width: 992px) {
     .responsive-image {
         margin-left: -100px;
@@ -1172,4 +1187,32 @@
         margin-left: -50px;
         margin-top: 1rem;
     }
+}
+
+@media (max-width: 600px) {
+
+    .col-mobile-6 {
+        flex: 0 0 auto;
+        width: 50%
+    }
+
+    .col-mobile-4 {
+        flex: 0 0 auto;
+        width: 33.333%
+    }
+
+    .accordion-body{
+        background: #fff; 
+        border-radius: 16px; 
+        width: 350px; 
+        height: 350px; 
+        overflow: auto;
+    }
+}
+
+
+.accordion-body{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
 }
