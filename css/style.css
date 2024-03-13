@@ -1254,3 +1254,25 @@
 }
 
 
+/* Payment Solution */
+.horizontal-scroll-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.horizontal-scroll-item {
+    flex: 0 0 auto;
+    margin-right: 10px; 
+
+    width: 300px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 15px;
+}
+
+.horizontal-scroll-item:last-child {
+    margin-right: 0;
+}
+
+
