@@ -609,7 +609,7 @@
 /*** Service ***/
 .service-icon {
     max-width: 25%;
-    transform: translateY(-50%);
+    /* transform: translateY(-50%); */
 }
 
 .rounded-50 {
